@@ -2,64 +2,129 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#1B8A4B">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0c4a2c">
 <title>O Quebra Galho</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#1f2a24;min-height:100vh}
-.topo{background:#1B8A4B;color:#fff;text-align:center;padding:40px 20px 50px;border-radius:0 0 32px 32px}
-.logo{width:84px;height:84px;background:#fff;border-radius:22px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center}
-.logo svg{width:52px;height:52px}
-h1{font-size:28px;letter-spacing:.5px}
-.slogan{margin-top:6px;font-size:17px;opacity:.95}
-.caixa{padding:22px 18px}
-.btn{display:block;width:100%;padding:16px;border-radius:14px;font-size:17px;font-weight:bold;border:2px solid #1B8A4B;margin-bottom:12px;text-align:center}
-.btn.verde{background:#1B8A4B;color:#fff}
-.btn.borda{background:#fff;color:#1B8A4B}
-.dupla{display:flex;gap:10px;margin:6px 0 4px}
-.dupla .op{flex:1;background:#f1f3f2;color:#14532d;border-radius:14px;padding:14px 8px;text-align:center;font-size:14px;font-weight:bold}
-h2{font-size:18px;margin:22px 0 12px;color:#14532d}
-.grade{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.cat{background:#f1f3f2;border-radius:14px;padding:14px 6px;text-align:center;font-size:13px;color:#14532d;font-weight:bold}
-.cat span{display:block;font-size:30px;margin-bottom:6px}
-.rodape{text-align:center;color:#8a948e;font-size:12px;padding:20px}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:Arial,Helvetica,sans-serif;background:#f4f6f5;color:#1f2a24;padding-bottom:80px}
+.tela{display:none;min-height:100vh}
+.tela.ativa{display:block}
+
+#splash{background:linear-gradient(180deg,#0c4a2c 0%,#116b3d 55%,#1B8A4B 100%);color:#fff;text-align:center;padding:70px 26px 40px}
+#splash.ativa{display:flex;flex-direction:column;align-items:center}
+#splash h1{font-size:34px;line-height:1.1;margin-top:14px}
+#splash .slogan{font-size:18px;font-weight:bold;margin-top:12px}
+#splash .espaco{flex:1;min-height:80px}
+.btn{display:block;width:100%;max-width:420px;padding:16px;border-radius:14px;font-size:17px;font-weight:bold;text-align:center;border:2px solid #fff;margin-top:12px;cursor:pointer}
+.btn.verde{background:#1B8A4B;border-color:#1B8A4B;color:#fff}
+.btn.borda{background:transparent;color:#fff}
+.link{margin-top:22px;font-size:14px;opacity:.9;text-decoration:underline;cursor:pointer}
+
+.hero{background:linear-gradient(180deg,#0c4a2c,#1B8A4B);color:#fff;padding:22px 18px 70px}
+.linha{display:flex;justify-content:space-between;align-items:center;font-size:14px}
+.hero h2{font-size:28px;line-height:1.15;margin-top:22px}
+.hero p{margin-top:8px;font-size:15px;opacity:.95}
+.busca{background:#fff;color:#1f2a24;border-radius:14px;padding:14px;margin-top:18px;font-size:15px;display:flex;gap:8px;align-items:center}
+.busca input{border:0;outline:0;flex:1;font-size:15px;background:transparent}
+.folha{background:#fff;border-radius:24px 24px 0 0;margin-top:-34px;padding:20px 16px;min-height:60vh}
+.grade4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.ic{text-align:center;font-size:11px;font-weight:bold;color:#14532d;cursor:pointer}
+.ic .bola{width:56px;height:56px;border-radius:16px;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;font-size:28px}
+h3{font-size:17px;margin:22px 0 10px;color:#14532d}
+.vazio{background:#f1f3f2;border-radius:14px;padding:20px;text-align:center;font-size:14px;color:#5b665f;line-height:1.4}
+
+.topo2{background:#fff;padding:22px 16px 10px;text-align:center;font-size:22px;font-weight:bold;position:sticky;top:0}
+.grade2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:12px 16px}
+.cartao{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.08);cursor:pointer}
+.cartao .foto{height:90px;display:flex;align-items:center;justify-content:center;font-size:44px}
+.cartao .nome{padding:10px;font-size:14px;font-weight:bold;color:#14532d}
+.breve{padding:80px 30px;text-align:center;color:#5b665f;font-size:16px;line-height:1.5}
+
+#menu{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #e3e8e5;display:none;justify-content:space-around;padding:8px 0 10px}
+#menu div{flex:1;text-align:center;font-size:11px;color:#8a948e;cursor:pointer}
+#menu div span{display:block;font-size:22px}
+#menu div.on{color:#1B8A4B;font-weight:bold}
 </style>
 </head>
 <body>
-<div class="topo">
-  <div class="logo">
-    <svg viewBox="0 0 64 64" fill="none" stroke="#1B8A4B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M44 10a12 12 0 0 0-11 16L12 47a5 5 0 0 0 7 7l21-21a12 12 0 0 0 16-11l-8 8-7-2-2-7z"/>
-    </svg>
-  </div>
-  <h1>O QUEBRA GALHO</h1>
+
+<div id="splash" class="tela ativa">
+  <svg viewBox="0 0 120 120" width="120" height="120">
+    <path d="M12 56 L60 14 L108 56" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M24 50 V104 H96 V50" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <g transform="rotate(-40 60 70)"><rect x="56" y="46" width="8" height="52" rx="3" fill="#F5A623"/><rect x="38" y="36" width="44" height="16" rx="4" fill="#F5A623"/></g>
+  </svg>
+  <h1>O Quebra<br>Galho</h1>
   <div class="slogan">Encontre quem resolve!</div>
+  <div class="espaco"></div>
+  <div class="btn verde" onclick="ir('inicio')">Entrar</div>
+  <div class="btn borda" onclick="ir('inicio')">Criar Conta</div>
+  <div class="link" onclick="ir('inicio')">Só quero dar uma olhada</div>
 </div>
 
-<div class="caixa">
-  <div class="btn verde">ENTRAR</div>
-  <div class="btn borda">CRIAR CONTA</div>
-
-  <div class="dupla">
-    <div class="op">🛠️ Sou profissional</div>
-    <div class="op">🔎 Preciso contratar um serviço</div>
+<div id="inicio" class="tela">
+  <div class="hero">
+    <div class="linha"><div>📍 Sua localização ▾</div><div>🔔</div></div>
+    <h2>Resolva o que precisa, do seu jeito!</h2>
+    <p>Profissionais perto de você, com avaliações reais.</p>
+    <div class="busca">🔍 <input placeholder="Buscar por serviço..."></div>
   </div>
-
-  <h2>Categorias populares</h2>
-  <div class="grade">
-    <div class="cat"><span>🧱</span>Pedreiro</div>
-    <div class="cat"><span>⚡</span>Eletricista</div>
-    <div class="cat"><span>🚰</span>Encanador</div>
-    <div class="cat"><span>🎨</span>Pintor</div>
-    <div class="cat"><span>🪑</span>Montador de móveis</div>
-    <div class="cat"><span>🚚</span>Freteiro</div>
-    <div class="cat"><span>🧹</span>Diarista</div>
-    <div class="cat"><span>🌿</span>Jardineiro</div>
-    <div class="cat"><span>🔧</span>Mecânico</div>
+  <div class="folha">
+    <div class="grade4" id="gradeInicio"></div>
+    <h3>Profissionais em destaque</h3>
+    <div class="vazio">Os profissionais cadastrados vão aparecer aqui.</div>
   </div>
 </div>
 
-<div class="rodape">O Quebra Galho • Etapa 1 em construção</div>
+<div id="categorias" class="tela">
+  <div class="topo2">Categorias</div>
+  <div class="grade2" id="gradeCats"></div>
+</div>
+
+<div id="favoritos" class="tela"><div class="topo2">Favoritos</div><div class="breve">Seus profissionais favoritos vão aparecer aqui.<br>Esta tela vem nos próximos passos.</div></div>
+<div id="mensagens" class="tela"><div class="topo2">Mensagens</div><div class="breve">Suas conversas vão aparecer aqui.<br>Esta tela vem nos próximos passos.</div></div>
+<div id="perfil" class="tela"><div class="topo2">Perfil</div><div class="breve">Sua conta vai aparecer aqui.<br>Esta tela vem nos próximos passos.</div></div>
+
+<div id="menu">
+  <div data-t="inicio" onclick="ir('inicio')"><span>🏠</span>Início</div>
+  <div data-t="categorias" onclick="ir('categorias')"><span>🗂️</span>Categorias</div>
+  <div data-t="favoritos" onclick="ir('favoritos')"><span>🤍</span>Favoritos</div>
+  <div data-t="mensagens" onclick="ir('mensagens')"><span>💬</span>Mensagens</div>
+  <div data-t="perfil" onclick="ir('perfil')"><span>👤</span>Perfil</div>
+</div>
+
+<script>
+var CATS=[
+ ["🧱","Construção e Reforma","#fde7d9"],
+ ["🧽","Limpeza","#fff3c4"],
+ ["⚡","Elétrica","#ffe8b8"],
+ ["🎨","Pintura","#dbe7ff"],
+ ["🪑","Montagem de Móveis","#e8e0d6"],
+ ["🚚","Frete e Transportes","#e3e8ee"],
+ ["🌿","Jardinagem","#d9f2df"],
+ ["💇","Beleza e Cuidados","#fde0ea"]
+];
+function montar(){
+  var a="",b="";
+  CATS.slice(0,7).forEach(function(c){
+    a+='<div class="ic" onclick="ir(\'categorias\')"><div class="bola" style="background:'+c[2]+'">'+c[0]+'</div>'+c[1]+'</div>';
+  });
+  a+='<div class="ic" onclick="ir(\'categorias\')"><div class="bola" style="background:#eceeed">⋯</div>Ver mais</div>';
+  CATS.forEach(function(c){
+    b+='<div class="cartao"><div class="foto" style="background:'+c[2]+'">'+c[0]+'</div><div class="nome">'+c[1]+'</div></div>';
+  });
+  document.getElementById("gradeInicio").innerHTML=a;
+  document.getElementById("gradeCats").innerHTML=b;
+}
+function ir(t){
+  document.querySelectorAll(".tela").forEach(function(e){e.classList.remove("ativa")});
+  document.getElementById(t).classList.add("ativa");
+  document.getElementById("menu").style.display=(t==="splash")?"none":"flex";
+  document.querySelectorAll("#menu div").forEach(function(d){d.classList.toggle("on",d.getAttribute("data-t")===t)});
+  window.scrollTo(0,0);
+}
+montar();
+</script>
 </body>
 </html>
